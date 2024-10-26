@@ -1,6 +1,5 @@
 pipeline airportsPipeline {
 
-
     airportsExtractor -> airportsTextFileInterpreter;
 
 
