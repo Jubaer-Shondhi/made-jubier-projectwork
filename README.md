@@ -1,6 +1,6 @@
 # Exercise Badges
 
-![](https://byob.yarr.is/Jubaer-Shondhi/made-jubier-projectwork/score_ex1?timestamp=1698153532)
+![](https://byob.yarr.is/Jubaer-Shondhi/made-jubier-projectwork/score_ex2) 
 
 
 
