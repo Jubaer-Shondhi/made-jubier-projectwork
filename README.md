@@ -1,10 +1,6 @@
 # Exercise Badges
 
 ![](https://byob.yarr.is/Jubaer-Shondhi/made-jubier-projectwork/score_ex1)
-![](https://byob.yarr.is/Jubaer-Shondhi/made-jubier-projectwork/score_ex2)
-![](https://byob.yarr.is/Jubaer-Shondhi/made-jubier-projectwork/score_ex3)
-![](https://byob.yarr.is/Jubaer-Shondhi/made-jubier-projectwork/score_ex4)
-![](https://byob.yarr.is/Jubaer-Shondhi/made-jubier-projectwork/score_ex5)
 
 
 # Methods of Advanced Data Engineering Template Project
