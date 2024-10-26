@@ -1,37 +1,24 @@
-
 pipeline airportsPipeline {
 
 
     airportsExtractor -> airportsTextFileInterpreter;
-    
 
 
     airportsTextFileInterpreter
         -> airportsCSVInterpreter 
-        -> airportsColumnDeleter
         -> airportsTableInterpreter
         -> airportsLoader;
 
-
     block airportsExtractor oftype HttpExtractor {
-
-
         url: "https://opendata.rhein-kreis-neuss.de/api/explore/v2.1/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv?lang=en&timezone=Europe%2FBerlin&use_labels=true&delimiter=%3B";
     }
 
     block airportsTextFileInterpreter oftype TextFileInterpreter { }
 
-    
     block airportsCSVInterpreter oftype CSVInterpreter {
         enclosing: '';
         delimiter: ";";
     }
-
-    block airportsColumnDeleter oftype ColumnDeleter {
-        delete: [column J, column K, column L, column M];
-    }
-
-    
 
     
     block airportsTableInterpreter oftype TableInterpreter {
@@ -46,17 +33,14 @@ pipeline airportsPipeline {
             "Latitude" oftype decimal,
             "Longitude" oftype decimal,
             "Altitude" oftype integer,
-            "Zeitzone" oftype decimal,
-            "DST" oftype text,
-            "Zeitzonen-Datenbank" oftype text,
-            "geo_punkt" oftype text
+
+            // Do not saving : "Zeitzone", "DST", "Zeitzonen-Datenbank", "geo_punkt". Because of the exercise goal.
+   
         ];
     }
-
 
     block airportsLoader oftype SQLiteLoader {
         table: "airports";
         file: "./airports.sqlite";
     }
-
 }
