@@ -1,6 +1,7 @@
 # Exercise Badges
 
-![](https://byob.yarr.is/AnikKazi-dev/Kazi_MADE/score_ex1)
+![](https://byob.yarr.is/AnikKazi-dev/Kazi_MADE/score_ex1) ![](https://byob.yarr.is/Jubaer-Shondhi/made-jubier-projectwork/score_ex1)
+
 
 
 # Methods of Advanced Data Engineering Template Project
