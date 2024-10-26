@@ -1,6 +1,6 @@
 # Exercise Badges
 
-![](https://byob.yarr.is/Jubaer-Shondhi/made-jubier-projectwork/score_ex1)
+![CI](https://github.com/Jubaer-Shondhi/made-jubier-projectwork/workflows/CI/badge.svg)
 
 
 # Methods of Advanced Data Engineering Template Project
