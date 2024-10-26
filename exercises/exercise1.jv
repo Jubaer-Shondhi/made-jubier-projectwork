@@ -35,6 +35,7 @@ pipeline airportsPipeline {
             "Altitude" oftype integer,
 
             // Do not saving : "Zeitzone", "DST", "Zeitzonen-Datenbank", "geo_punkt". Because of the exercise goal.
+            // It is efficient not to add these columns
    
         ];
     }
