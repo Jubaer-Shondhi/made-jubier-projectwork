@@ -1,7 +1,7 @@
 # Project Plan
 
 ## Title
-Analysis of police encounters and their impact in the United States
+Analysis of police encounters in the United States
 
 ## Main Question
 
@@ -15,18 +15,14 @@ This project analyzes police encounters in the United States, focusing on how vi
 
 
 ### Datasource1: 
-* Metadata URL: https://www.kaggle.com/datasets/ramjasmaurya/us-police-shootings-from-20152022/data  
-* Data URL: https://www.kaggle.com/datasets/ramjasmaurya/us-police-shootings-from-20152022/data 
+* URL: https://www.kaggle.com/datasets/ramjasmaurya/us-police-shootings-from-20152022/data 
 * Data Type: CSV
-
-This dataset contains records of police shootings in the United States from 2015 to 2022. It includes details such as the date of the incident, manner of death, demographics of the individuals involved, and geographic location, providing insights into patterns and trends in police use of force.
+* Description: This dataset contains records of police shootings in the United States from 2015 to 2022. It includes details such as the date of the incident, manner of death, demographics of the individuals involved, and geographic location, providing insights into patterns and trends in police use of force.
 
 ### Datasource2: 
-* Metadata URL: https://www.kaggle.com/datasets/ahsen1330/us-police-shootings  
 * Data URL: https://www.kaggle.com/datasets/ramjasmaurya/us-police-shootings-from-20152022/data 
 * Data Type: CSV
-
-This dataset includes details such as arms category,flee, body camera and providing insights into patterns and trends in police use of force.
+* Description: This dataset includes details such as arms category,flee, body camera and providing insights into patterns and trends in police use of force.
 
 ## Work Packages
 
