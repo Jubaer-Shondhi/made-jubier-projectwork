@@ -1,28 +1,28 @@
 # Project Plan
 
 ## Title
-Analysis of police encounters in the United States
+Exploring the relationship between eating out frequency and daily caloric intake across food categories in the U.S
 
 ## Main Question
 
-How do victims' age, gender, and threat level from the victim influence the frequency and outcomes of police encounters in the United States?
+Does eating out frequently lead to higher daily caloric intake from specific food categories?
 
 ## Description
 
-This project analyzes police encounters in the United States, focusing on how victims' age, gender, and perceived threat level influence the frequency and outcomes of these incidents. Despite a 1994 mandate, there remains no comprehensive federal record on police use of force, with estimates indicating 930 to 1,240 fatalities annually. Media-led databases, such as The Counted by The Guardian and The Washington Post’s tracking of police shootings, report thousands of fatalities since 2015. By examining these factors, this analysis aims to reveal patterns and contribute to informed discussions on law enforcement practices and public safety. The dataset includes over 7,700 records from 2015 to 2022, detailing victim demographics, incident circumstances, and geolocation data.
+This project examines the potential link between eating out frequency and increased daily caloric intake across various food categories. Using two datasets—one detailing calories in specific food items and the other capturing eating habits and daily calorie consumption—the goal is to determine whether people who eat out more frequently tend to consume higher-calorie foods overall. This analysis will shed light on dietary patterns related to eating out, providing insights into the impact of dining choices on caloric intake. Understanding this relationship could help inform dietary guidelines and strategies for healthier eating habits, particularly in urban and fast-paced environments where eating out is common.
 
 ## Datasources
 
 
-### Datasource1: 
-* URL: https://www.kaggle.com/datasets/ramjasmaurya/us-police-shootings-from-20152022/data 
+### Datasource1: Food choices and preferences of college students
+* URL: https://www.kaggle.com/datasets/borapajo/food-choices/code 
 * Data Type: CSV
-* Description: This dataset contains records of police shootings in the United States from 2015 to 2022. It includes details such as the date of the incident, manner of death, demographics of the individuals involved, and geographic location, providing insights into patterns and trends in police use of force.
+* Description: This dataset includes information on food choices, nutrition, preferences, childhood favorites, and other information from college students
 
-### Datasource2: 
-* Data URL: https://www.kaggle.com/datasets/ahsen1330/us-police-shootings
+### Datasource2: Calories in Food Items (per 100gm, ounce, serving)
+* Data URL: https://www.kaggle.com/datasets/syedjaferk/calories-in-food-items-per-100gm-ounce-serving 
 * Data Type: CSV
-* Description: This dataset includes details such as arms category,flee, body camera and providing insights into patterns and trends in police use of force.
+* Description: This dataset helps to discover the caloric content and other facts about common foods. By analyzing this data, we will be able to understand how much calories are intaking, which will empower to make dietary choices that never leave you with guilt.
 
 ## Work Packages
 
