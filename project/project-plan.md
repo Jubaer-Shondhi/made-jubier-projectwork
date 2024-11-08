@@ -15,7 +15,7 @@ This project examines the potential link between eating out frequency and increa
 
 
 ### Datasource1: Food choices and preferences of college students
-* URL: https://www.kaggle.com/datasets/borapajo/food-choices/code 
+* URL: https://www.kaggle.com/datasets/borapajo/food-choices?select=food_coded.csv 
 * Data Type: CSV
 * Description: This dataset includes information on food choices, nutrition, preferences, childhood favorites, and other information from college students
 
