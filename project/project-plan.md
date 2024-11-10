@@ -1,28 +1,32 @@
 # Project Plan
 
 ## Title
-Exploring the relationship between eating out frequency and daily caloric intake across food categories in the U.S
+Tracing the Climate Impact: Examining CO₂ Emission Effects on Temperature Patterns in Brazil
 
 ## Main Question
 
-Does eating out frequently lead to higher daily caloric intake from specific food categories?
+How do CO₂ emissions correlate with temperature trends in Brazil?
 
 ## Description
 
-This project examines the potential link between eating out frequency and increased daily caloric intake across various food categories. Using two datasets—one detailing calories in specific food items and the other capturing eating habits and daily calorie consumption—the goal is to determine whether people who eat out more frequently tend to consume higher-calorie foods overall. This analysis will shed light on dietary patterns related to eating out, providing insights into the impact of dining choices on caloric intake. Understanding this relationship could help inform dietary guidelines and strategies for healthier eating habits, particularly in urban and fast-paced environments where eating out is common.
+By analyzing historical data on CO2 levels and temperatures specific to Brazil, we aim to explore whether increased CO2 emissions are linked to rising temperatures within the country. Typically, higher CO2 levels in the atmosphere are associated with warmer temperatures. Understanding this relationship in Brazil’s context helps us assess the impacts of climate change, providing insights that can inform strategies to reduce CO2 emissions and mitigate the effects of global warming at a national level.
 
 ## Datasources
 
 
-### Datasource1: Food choices and preferences of college students
-* URL: https://www.kaggle.com/datasets/borapajo/food-choices?select=food_coded.csv 
+### DataSource1: CO2 and Greenhouse Gas Emissions
+* Metadata URL: https://github.com/owid/co2-data/tree/master
+* Data URL: https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv
 * Data Type: CSV
-* Description: This dataset includes information on food choices, nutrition, preferences, childhood favorites, and other information from college students
 
-### Datasource2: Calories in Food Items (per 100gm, ounce, serving)
-* Data URL: https://www.kaggle.com/datasets/syedjaferk/calories-in-food-items-per-100gm-ounce-serving 
+This dataset contains data on CO2 emissions (annual, per capita, cumulative and consumption-based), other greenhouse gases, energy mix, and other relevant metrics.
+
+### DataSource2: Earth Surface Temperature Data
+* Metadata URL: https://figshare.com/articles/dataset/temperature_csv/3171766/1
+* Data URL: https://figshare.com/ndownloader/files/4938964
 * Data Type: CSV
-* Description: This dataset helps to discover the caloric content and other facts about common foods. By analyzing this data, we will be able to understand how much calories are intaking, which will empower to make dietary choices that never leave you with guilt.
+
+This dataset contains data from Kaggle, featuring 7 countries and 16 cities.
 
 ## Work Packages
 
