@@ -1,28 +1,32 @@
 # Project Plan
 
 ## Title
-Analysis of police encounters in the United States
+Tracing the Climate Impact: Examining CO₂ Emission Effects on Temperature Patterns in Brazil
 
 ## Main Question
 
-How do victims' age, gender, and threat level from the victim influence the frequency and outcomes of police encounters in the United States?
+How do CO₂ emissions correlate with temperature trends in Brazil?
 
 ## Description
 
-This project analyzes police encounters in the United States, focusing on how victims' age, gender, and perceived threat level influence the frequency and outcomes of these incidents. Despite a 1994 mandate, there remains no comprehensive federal record on police use of force, with estimates indicating 930 to 1,240 fatalities annually. Media-led databases, such as The Counted by The Guardian and The Washington Post’s tracking of police shootings, report thousands of fatalities since 2015. By examining these factors, this analysis aims to reveal patterns and contribute to informed discussions on law enforcement practices and public safety. The dataset includes over 7,700 records from 2015 to 2022, detailing victim demographics, incident circumstances, and geolocation data.
+By analyzing historical data on CO2 levels and temperatures specific to Brazil, we aim to explore whether increased CO2 emissions are linked to rising temperatures within the country. Typically, higher CO2 levels in the atmosphere are associated with warmer temperatures. Understanding this relationship in Brazil’s context helps us assess the impacts of climate change, providing insights that can inform strategies to reduce CO2 emissions and mitigate the effects of global warming at a national level.
 
 ## Datasources
 
 
-### Datasource1: 
-* URL: https://www.kaggle.com/datasets/ramjasmaurya/us-police-shootings-from-20152022/data 
+### DataSource1: CO2 and Greenhouse Gas Emissions
+* Metadata URL: https://github.com/owid/co2-data/tree/master
+* Data URL: https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv
 * Data Type: CSV
-* Description: This dataset contains records of police shootings in the United States from 2015 to 2022. It includes details such as the date of the incident, manner of death, demographics of the individuals involved, and geographic location, providing insights into patterns and trends in police use of force.
 
-### Datasource2: 
-* Data URL: https://www.kaggle.com/datasets/ahsen1330/us-police-shootings
+This dataset contains data on CO2 emissions (annual, per capita, cumulative and consumption-based), other greenhouse gases, energy mix, and other relevant metrics.
+
+### DataSource2: Earth Surface Temperature Data
+* Metadata URL: https://figshare.com/articles/dataset/temperature_csv/3171766/1
+* Data URL: https://figshare.com/ndownloader/files/4938964
 * Data Type: CSV
-* Description: This dataset includes details such as arms category,flee, body camera and providing insights into patterns and trends in police use of force.
+
+This dataset contains data from Kaggle, featuring 7 countries and 16 cities.
 
 ## Work Packages
 
