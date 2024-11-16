@@ -1,0 +1,57 @@
+pipeline CountryStatsPipeline {
+  // Step 1: Extract the XLSX file directly from the web
+  block CountryStatsExtractor oftype HttpExtractor {
+    url: "https://thedocs.worldbank.org/en/doc/7d852628d96b9411d43e5d36d5dff941-0050062022/original/Graphs-Chapter-5-02082022.xlsx";
+  }
+
+  // Step 2: Interpret the file as an XLSX workbook
+  block CountryStatsXLSXInterpreter oftype XLSXInterpreter { }
+
+  // Step 3: Select the sheet "Figure S5.1.2" for processing
+  block CountryStatsSheetPicker oftype SheetPicker {
+    sheetName: "Figure S5.1.2";
+  }
+
+  // Step 5: Select the specific range of cells (P2:S45)
+  block CountryStatsCellRangeSelector oftype CellRangeSelector {
+    select: range P2:S45;
+  }
+
+  // Step 6: Write the header to cell P2
+  block NameHeaderWriter oftype CellWriter {
+    at: range P2:S2;
+    write: [
+      "Country Code",
+      "Economy",
+      "GDP per Capita",
+      "Bond Issuance Share",
+    ];
+  }
+
+  // Step 7: Interpret the data as a table with updated column types
+  block CountryStatsTableInterpreter oftype TableInterpreter {
+    header: true;
+    columns: [
+      "ISO3" oftype text,
+      "Economy" oftype text,
+      "GDP per capita (US$, thousands)" oftype decimal,
+      "Share of government sustainable bonds" oftype decimal
+    ];
+  }
+
+  // Step 8: Load Bond Issuance data into a SQLite table
+  block BondIssuanceLoader oftype SQLiteLoader {
+    table: "bondIssuance";
+    file: "./country-stats.sqlite";
+  }
+
+  // Define the pipeline flow
+  CountryStatsExtractor
+    -> CountryStatsXLSXInterpreter
+    -> CountryStatsSheetPicker
+    -> NameHeaderWriter
+    -> CountryStatsCellRangeSelector
+
+    -> CountryStatsTableInterpreter
+    -> BondIssuanceLoader;
+}
