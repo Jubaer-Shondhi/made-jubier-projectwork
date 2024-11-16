@@ -17,16 +17,7 @@ pipeline CountryStatsPipeline {
     select: range P2:S45;
   }
 
-  // Step 6: Write the header to cell P2
-  block NameHeaderWriter oftype CellWriter {
-    at: range P2:S2;
-    write: [
-      "Country Code",
-      "Economy",
-      "GDP per Capita",
-      "Bond Issuance Share",
-    ];
-  }
+
 
   // Step 7: Interpret the data as a table with updated column types
   block CountryStatsTableInterpreter oftype TableInterpreter {
@@ -49,9 +40,7 @@ pipeline CountryStatsPipeline {
   CountryStatsExtractor
     -> CountryStatsXLSXInterpreter
     -> CountryStatsSheetPicker
-    -> NameHeaderWriter
     -> CountryStatsCellRangeSelector
-
     -> CountryStatsTableInterpreter
     -> BondIssuanceLoader;
 }
