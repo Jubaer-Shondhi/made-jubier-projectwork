@@ -90,6 +90,8 @@ pipeline CountryStatsPipeline {
   constraint BondIssuanceRange oftype RangeConstraint {
     lowerBound: 0;
     upperBound: 1;
+    lowerBoundInclusive: true;
+    upperBoundInclusive: true;
   }
 
   valuetype GdpPerCapita oftype decimal {
@@ -98,6 +100,7 @@ pipeline CountryStatsPipeline {
 
   constraint GdpPerCapitaRange oftype RangeConstraint {
     lowerBound: 0;
+    lowerBoundInclusive: true;
   }
 
   // Define pipeline flow
