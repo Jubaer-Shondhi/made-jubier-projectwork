@@ -12,16 +12,20 @@ pipeline CountryStatsPipeline {
     sheetName: "Figure S5.1.2";
   }
 
+  // Step 4: Write new headers to standardize column names
+  // block CountryStatsHeaderWriter oftype CellWriter {
+  //   at: range P2:S2;
+  //   write: ["ISO Country Code", "Country", "GDP per Capita (USD)", "Bond Issuance Share (%)"];
+  // }
+
   // Step 5: Select the specific range of cells (P2:S45)
   block CountryStatsCellRangeSelector oftype CellRangeSelector {
     select: range P2:S45;
   }
 
-
-
-  // Step 7: Interpret the data as a table with updated column types
+  // Step 6: Interpret the data as a table with updated column types
   block CountryStatsTableInterpreter oftype TableInterpreter {
-    header: true;
+    header: false;
     columns: [
       "ISO3" oftype text,
       "Economy" oftype text,
@@ -30,17 +34,48 @@ pipeline CountryStatsPipeline {
     ];
   }
 
-  // Step 8: Load Bond Issuance data into a SQLite table
+  // // Step 7: Validate rows using constraints for each column
+  // block CountryStatsValidator oftype RowFilter {
+  //   conditions: [
+  //     "ISO Country Code is not null and ISO Country Code matches /^[A-Z]{3}$/",
+  //     "GDP per Capita (USD) is not null and GDP per Capita (USD) > 0",
+  //     "Bond Issuance Share (%) is not null and Bond Issuance Share (%) >= 0 and Bond Issuance Share (%) <= 100"
+  //   ];
+  // }
+
+  // // Step 8: Split data into separate tables for Bond Issuance and GDP
+  // block BondIssuanceSplitter oftype ColumnFilter {
+  //   keep: ["ISO Country Code", "Bond Issuance Share (%)"];
+  // }
+
+  // block GdpPerCapitaSplitter oftype ColumnFilter {
+  //   keep: ["ISO Country Code", "GDP per Capita (USD)"];
+  // }
+
+  // Step 9: Load Bond Issuance data into a SQLite table
   block BondIssuanceLoader oftype SQLiteLoader {
     table: "bondIssuance";
     file: "./country-stats.sqlite";
   }
 
+  // Step 10: Load GDP Per Capita data into a SQLite table
+  // block GdpPerCapitaLoader oftype SQLiteLoader {
+  //   table: "gdpPerCapita";
+  //   file: "./country-stats.sqlite";
+  // }
+
   // Define the pipeline flow
   CountryStatsExtractor
     -> CountryStatsXLSXInterpreter
     -> CountryStatsSheetPicker
+    //-> CountryStatsHeaderWriter
     -> CountryStatsCellRangeSelector
     -> CountryStatsTableInterpreter
+    //-> CountryStatsValidator
+    //-> BondIssuanceSplitter
     -> BondIssuanceLoader;
+
+  // CountryStatsValidator
+  //   -> GdpPerCapitaSplitter
+  //   -> GdpPerCapitaLoader;
 }
