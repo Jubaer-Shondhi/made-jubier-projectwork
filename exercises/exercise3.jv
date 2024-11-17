@@ -51,7 +51,7 @@ pipeline CountryStatsPipeline {
   block CountryStatsTableInterpreter oftype TableInterpreter {
     header: true;
     columns: [
-      "Country Code" oftype text,
+      "Country Code" oftype CountryCode,
       "Bond Issuance Share (%)" oftype BondIssuanceShare
     ];
   }
