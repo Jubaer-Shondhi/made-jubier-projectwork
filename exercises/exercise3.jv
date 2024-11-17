@@ -1,54 +1,51 @@
-// Pipeline definition
 pipeline CountryStatsPipeline {
-  // Step 1: Extract the XLSX file directly from the web
+
   block CountryStatsExtractor oftype HttpExtractor {
     url: "https://thedocs.worldbank.org/en/doc/7d852628d96b9411d43e5d36d5dff941-0050062022/original/Graphs-Chapter-5-02082022.xlsx";
   }
 
-  // Step 2: Interpret the file as an XLSX workbook
+  
   block CountryStatsXLSXInterpreter oftype XLSXInterpreter { }
 
-  // Step 3: Select the specific sheet for processing
-  block CountryStatsSheetPicker oftype SheetPicker {
+  block CountryStatsSheetPickerForBondIssuance oftype SheetPicker {
     sheetName: "Figure S5.1.2";
   }
 
-  block CountryStatsSheetPicker2 oftype SheetPicker {
+  block CountryStatsSheetPickerForGDPPerCapita oftype SheetPicker {
     sheetName: "Figure S5.1.2";
   }
 
-  // Step 4: Select the specific range of cells (P2:S45)
-  block CountryStatsCellRangeSelector oftype CellRangeSelector {
+
+  block CountryStatsCellRangeSelectorForBondIssuance oftype CellRangeSelector {
     select: range P2:S45;
   }
 
-  block CountryStatsCellRangeSelector2 oftype CellRangeSelector {
+  block CountryStatsCellRangeSelectorForGDPPerCapita oftype CellRangeSelector {
     select: range P2:S45;
   }
 
-  // Step 5: Write new headers to standardize column names
-  block CountryStatsHeaderWriter1 oftype CellWriter {
+
+  block CountryStatsHeaderWriterCountryCodeForBondIssuance oftype CellWriter {
     at: cell P2;
     write: ["Country Code"];
   }
 
-  block CountryStatsHeaderWriter3 oftype CellWriter {
+  block CountryStatsHeaderWriterForBondIssuance oftype CellWriter {
     at: cell S2;
     write: ["Bond Issuance Share"];
   }
 
-  block CountryStatsHeaderWriter11 oftype CellWriter {
+  block CountryStatsHeaderWriterCountryCodeForGDPPerCapita oftype CellWriter {
     at: cell P2;
     write: ["Country Code"];
   }
 
-  block CountryStatsHeaderWriter21 oftype CellWriter {
+  block CountryStatsHeaderWriterForGDPPerCapita oftype CellWriter {
     at: cell R2;
     write: ["GDP per Capita"];
   }
 
-  // Step 6: Interpret the data as a table with custom column types and constraints
-  block CountryStatsTableInterpreter oftype TableInterpreter {
+  block CountryStatsTableInterpreterForBondIssuance oftype TableInterpreter {
     header: true;
     columns: [
       "Country Code" oftype CountryCode,
@@ -56,7 +53,7 @@ pipeline CountryStatsPipeline {
     ];
   }
 
-  block GDPPerCapitalTableInterpreter oftype TableInterpreter {
+  block CountryStatsTableInterpreterForGDPPerCapita oftype TableInterpreter {
     header: true;
     columns: [
       "Country Code" oftype CountryCode,
@@ -64,7 +61,7 @@ pipeline CountryStatsPipeline {
     ];
   }
 
-  // Step 7: Load the data into SQLite tables
+
   block BondIssuanceLoader oftype SQLiteLoader {
     table: "bondIssuance";
     file: "./country-stats.sqlite";
@@ -82,7 +79,7 @@ pipeline CountryStatsPipeline {
   constraint CCRegexConstraint oftype RegexConstraint {
     regex: /^[A-Z]{3}$/;
   }
-  // Define custom ValueTypes with Constraints
+
   valuetype BondIssuanceShare oftype decimal {
     constraints: [ BondIssuanceRange ];
   }
@@ -103,21 +100,21 @@ pipeline CountryStatsPipeline {
     lowerBoundInclusive: true;
   }
 
-  // Define pipeline flow
+
   CountryStatsExtractor
     -> CountryStatsXLSXInterpreter
-    -> CountryStatsSheetPicker
-    -> CountryStatsHeaderWriter1
-    -> CountryStatsHeaderWriter3
-    -> CountryStatsCellRangeSelector
-    -> CountryStatsTableInterpreter
+    -> CountryStatsSheetPickerForBondIssuance
+    -> CountryStatsHeaderWriterCountryCodeForBondIssuance
+    -> CountryStatsHeaderWriterForBondIssuance
+    -> CountryStatsCellRangeSelectorForBondIssuance
+    -> CountryStatsTableInterpreterForBondIssuance
     -> BondIssuanceLoader;
 
   CountryStatsXLSXInterpreter
-    -> CountryStatsSheetPicker2
-    -> CountryStatsHeaderWriter11
-    -> CountryStatsHeaderWriter21
-    -> CountryStatsCellRangeSelector2
-    -> GDPPerCapitalTableInterpreter
+    -> CountryStatsSheetPickerForGDPPerCapita
+    -> CountryStatsHeaderWriterCountryCodeForGDPPerCapita
+    -> CountryStatsHeaderWriterForGDPPerCapita
+    -> CountryStatsCellRangeSelectorForGDPPerCapita
+    -> CountryStatsTableInterpreterForGDPPerCapita
     -> GdpPerCapitaLoader;
 }
