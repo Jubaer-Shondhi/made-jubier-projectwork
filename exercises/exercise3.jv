@@ -34,7 +34,7 @@ pipeline CountryStatsPipeline {
 
   block CountryStatsHeaderWriter3 oftype CellWriter {
     at: cell S2;
-    write: ["Bond Issuance Share (%)"];
+    write: ["Bond Issuance Share"];
   }
 
   block CountryStatsHeaderWriter11 oftype CellWriter {
@@ -44,7 +44,7 @@ pipeline CountryStatsPipeline {
 
   block CountryStatsHeaderWriter21 oftype CellWriter {
     at: cell R2;
-    write: ["GDP per Capita (USD)"];
+    write: ["GDP per Capita"];
   }
 
   // Step 6: Interpret the data as a table with custom column types and constraints
@@ -52,7 +52,7 @@ pipeline CountryStatsPipeline {
     header: true;
     columns: [
       "Country Code" oftype CountryCode,
-      "Bond Issuance Share (%)" oftype BondIssuanceShare
+      "Bond Issuance Share" oftype BondIssuanceShare
     ];
   }
 
@@ -60,7 +60,7 @@ pipeline CountryStatsPipeline {
     header: true;
     columns: [
       "Country Code" oftype CountryCode,
-      "GDP per Capita (USD)" oftype GdpPerCapita
+      "GDP per Capita" oftype GdpPerCapita
     ];
   }
 
