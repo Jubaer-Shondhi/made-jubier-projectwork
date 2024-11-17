@@ -82,7 +82,7 @@ pipeline CountryStatsPipeline {
 
   constraint BondIssuanceRange oftype RangeConstraint {
     lowerBound: 0;
-    upperBound: 100;
+    upperBound: 1;
   }
 
   valuetype GdpPerCapita oftype decimal {
