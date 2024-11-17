@@ -7,50 +7,59 @@ pipeline CountryStatsPipeline {
   // Step 2: Interpret the file as an XLSX workbook
   block CountryStatsXLSXInterpreter oftype XLSXInterpreter { }
 
-  // Step 3: Select the sheet "Figure S5.1.2" for processing
   block CountryStatsSheetPicker oftype SheetPicker {
     sheetName: "Figure S5.1.2";
   }
 
-  // Step 4: Write new headers to standardize column names
-  // block CountryStatsHeaderWriter oftype CellWriter {
-  //   at: range P2:S2;
-  //   write: ["ISO Country Code", "Country", "GDP per Capita (USD)", "Bond Issuance Share (%)"];
-  // }
+  block CountryStatsSheetPicker2 oftype SheetPicker {
+    sheetName: "Figure S5.1.2";
+  }
+
 
   // Step 5: Select the specific range of cells (P2:S45)
   block CountryStatsCellRangeSelector oftype CellRangeSelector {
     select: range P2:S45;
   }
 
+  block CountryStatsCellRangeSelector2 oftype CellRangeSelector {
+    select: range P2:S45;
+  }
+
+  block CountryStatsHeaderWriter1 oftype CellWriter {
+   at: cell P2;
+   write: ["Country Code"];
+  }
+
+
+
+  //Step 4: Write new headers to standardize column names
+  block CountryStatsHeaderWriter3 oftype CellWriter {
+    at: cell S2;
+    write: ["Bond Issuance Share (%)"];
+  }
+
+  block CountryStatsHeaderWriter11 oftype CellWriter {
+   at: cell P2;
+   write: ["Country Code"];
+  }
+
+  block CountryStatsHeaderWriter21 oftype CellWriter {
+   at: cell R2;
+   write: ["GDP per Capita (USD)"];
+  }
+
+
   // Step 6: Interpret the data as a table with updated column types
   block CountryStatsTableInterpreter oftype TableInterpreter {
-    header: false;
+    header: true;
     columns: [
-      "ISO3" oftype text,
-      "Economy" oftype text,
-      "GDP per capita (US$, thousands)" oftype decimal,
-      "Share of government sustainable bonds" oftype decimal
+      "Country Code" oftype text,
+      //"Economy" oftype text,
+      //"GDP per Capita (USD)" oftype decimal,
+      "Bond Issuance Share (%)" oftype decimal
     ];
   }
 
-  // // Step 7: Validate rows using constraints for each column
-  // block CountryStatsValidator oftype RowFilter {
-  //   conditions: [
-  //     "ISO Country Code is not null and ISO Country Code matches /^[A-Z]{3}$/",
-  //     "GDP per Capita (USD) is not null and GDP per Capita (USD) > 0",
-  //     "Bond Issuance Share (%) is not null and Bond Issuance Share (%) >= 0 and Bond Issuance Share (%) <= 100"
-  //   ];
-  // }
-
-  // // Step 8: Split data into separate tables for Bond Issuance and GDP
-  // block BondIssuanceSplitter oftype ColumnFilter {
-  //   keep: ["ISO Country Code", "Bond Issuance Share (%)"];
-  // }
-
-  // block GdpPerCapitaSplitter oftype ColumnFilter {
-  //   keep: ["ISO Country Code", "GDP per Capita (USD)"];
-  // }
 
   // Step 9: Load Bond Issuance data into a SQLite table
   block BondIssuanceLoader oftype SQLiteLoader {
@@ -58,24 +67,43 @@ pipeline CountryStatsPipeline {
     file: "./country-stats.sqlite";
   }
 
-  // Step 10: Load GDP Per Capita data into a SQLite table
-  // block GdpPerCapitaLoader oftype SQLiteLoader {
-  //   table: "gdpPerCapita";
-  //   file: "./country-stats.sqlite";
-  // }
+
+
+    block GDPPerCapitalTableInterpreter oftype TableInterpreter {
+    header: true;
+    columns: [
+      "Country Code" oftype text,
+      //"Economy" oftype text,
+      "GDP per Capita (USD)" oftype decimal,
+      //"Bond Issuance Share (%)" oftype decimal
+    ];
+  }
+
+
+  block GdpPerCapitaLoader oftype SQLiteLoader {
+    table: "gdpPerCapita";
+    file: "./country-stats.sqlite";
+  }
+
+
 
   // Define the pipeline flow
   CountryStatsExtractor
     -> CountryStatsXLSXInterpreter
     -> CountryStatsSheetPicker
-    //-> CountryStatsHeaderWriter
+    -> CountryStatsHeaderWriter1
+    -> CountryStatsHeaderWriter3
     -> CountryStatsCellRangeSelector
     -> CountryStatsTableInterpreter
-    //-> CountryStatsValidator
-    //-> BondIssuanceSplitter
     -> BondIssuanceLoader;
 
-  // CountryStatsValidator
-  //   -> GdpPerCapitaSplitter
-  //   -> GdpPerCapitaLoader;
+  CountryStatsXLSXInterpreter
+    -> CountryStatsSheetPicker2
+    -> CountryStatsHeaderWriter11
+    -> CountryStatsHeaderWriter21
+    -> CountryStatsCellRangeSelector2
+    -> GDPPerCapitalTableInterpreter
+    -> GdpPerCapitaLoader;
+
+
 }
