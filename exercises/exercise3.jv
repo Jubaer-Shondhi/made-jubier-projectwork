@@ -59,7 +59,7 @@ pipeline CountryStatsPipeline {
   block GDPPerCapitalTableInterpreter oftype TableInterpreter {
     header: true;
     columns: [
-      "Country Code" oftype text,
+      "Country Code" oftype CountryCode,
       "GDP per Capita (USD)" oftype GdpPerCapita
     ];
   }
@@ -75,6 +75,13 @@ pipeline CountryStatsPipeline {
     file: "./country-stats.sqlite";
   }
 
+  valuetype CountryCode oftype text {
+    constraints: [ CCRegexConstraint ];
+  }
+
+  constraint CCRegexConstraint oftype RegexConstraint {
+    regex: /^[A-Z]{3}$/;
+  }
   // Define custom ValueTypes with Constraints
   valuetype BondIssuanceShare oftype decimal {
     constraints: [ BondIssuanceRange ];
