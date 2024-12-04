@@ -92,7 +92,7 @@ valuetype positiveValueType oftype integer {
 }
 
 constraint positiveValueConstraint on integer :
-    value >= 0;
+    value > 0;
 
 constraint rangeMonthConst oftype RangeConstraint {
     lowerBound: 1;
