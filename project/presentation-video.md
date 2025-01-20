@@ -1,1 +1,2 @@
-Video link: https://faubox.rrze.uni-erlangen.de/getlink/fiNc4KoVAg6ArbnwT2r8T6/2025-01-20%2013-06-07.mkv
+Video Link: https://faubox.rrze.uni-erlangen.de/getlink/fi8Jv6LCAHgLUppRUAPeh3/MADE%20Presentation%20Video.mp4
+Download Link: https://faubox.rrze.uni-erlangen.de/dl/fi8Jv6LCAHgLUppRUAPeh3/MADE%20Presentation%20Video.mp4
